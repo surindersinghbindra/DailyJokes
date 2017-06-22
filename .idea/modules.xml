@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/DailyJokes.iml" filepath="$PROJECT_DIR$/DailyJokes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jokes_playstore_app/jokes_playstore_app.iml" filepath="$PROJECT_DIR$/jokes_playstore_app/jokes_playstore_app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jokes_upload_app/jokes_upload_app.iml" filepath="$PROJECT_DIR$/jokes_upload_app/jokes_upload_app.iml" />
+    </modules>
+  </component>
+</project>

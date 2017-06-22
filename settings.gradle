@@ -1,0 +1,1 @@
+include ':jokes_playstore_app', ':jokes_upload_app'
