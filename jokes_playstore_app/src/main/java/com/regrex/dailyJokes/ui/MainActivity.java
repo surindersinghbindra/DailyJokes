@@ -26,6 +26,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.regrex.dailyJokes.R;
 import com.regrex.dailyJokes.binding.RecyclerViewBinding;
+import com.regrex.dailyJokes.model.CategorySingle;
 import com.regrex.dailyJokes.model.JokeCategory;
 import com.regrex.dailyJokes.utils.DataBaseHelper;
 
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("joke_categories");
+        DatabaseReference myRef = database.getReference("jokes_category");
         myRef.keepSynced(true);
 
         try {
@@ -92,19 +93,19 @@ public class MainActivity extends AppCompatActivity
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Query query = myRef.orderByChild("id");
+        Query query = myRef.orderByChild("categoryId");
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<JokeCategory> jokeDetailsList = new ArrayList<>();
+                ArrayList<CategorySingle> jokeDetailsList = new ArrayList<>();
 
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot joke : dataSnapshot.getChildren()) {
-                        JokeCategory jokeDetail = joke.getValue(JokeCategory.class);
+                        CategorySingle jokeDetail = joke.getValue(CategorySingle.class);
                         jokeDetailsList.add(jokeDetail);
                     }
                     jokeDetailsList.size();
-                    recyclerView.setAdapter(new RecyclerViewBinding<JokeCategory>(jokeDetailsList, com.regrex.dailyJokes.BR.jokeCategory, R.layout.single_item_category, MainActivity.this));
+                    recyclerView.setAdapter(new RecyclerViewBinding<CategorySingle>(jokeDetailsList, com.regrex.dailyJokes.BR.jokeCategory, R.layout.single_item_category, MainActivity.this));
 
                 }
             }

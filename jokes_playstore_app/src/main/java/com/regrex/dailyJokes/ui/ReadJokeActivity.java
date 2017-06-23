@@ -15,6 +15,7 @@ import com.mindorks.butterknifelite.annotations.BindView;
 import com.mindorks.placeholderview.SwipeDecor;
 import com.mindorks.placeholderview.SwipePlaceHolderView;
 import com.regrex.dailyJokes.R;
+import com.regrex.dailyJokes.model.JokeSingle;
 import com.regrex.dailyJokes.widgets.TinderCard2;
 import com.regrex.dailyJokes.binding.RecyclerViewBinding;
 import com.regrex.dailyJokes.model.JokeDetail;
@@ -40,11 +41,11 @@ public class ReadJokeActivity extends AppCompatActivity implements RecyclerViewB
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("jokes");
 
-        Query query = myRef.orderByChild("main_id").equalTo(getIntent().getIntExtra("CATEGORY", 1));
+        Query query = myRef.orderByChild("categoryId").equalTo(getIntent().getIntExtra("CATEGORY", 1));
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<JokeDetail> jokeDetailsList = new ArrayList<>();
+                ArrayList<JokeSingle> jokeDetailsList = new ArrayList<>();
 
                 if (dataSnapshot.exists()) {
 
@@ -79,9 +80,9 @@ public class ReadJokeActivity extends AppCompatActivity implements RecyclerViewB
                                     .setSwipeOutMsgLayoutId(R.layout.tinder_swipe_out_msg_view));*/
 
                     for (DataSnapshot joke : dataSnapshot.getChildren()) {
-                        JokeDetail jokeDetail = joke.getValue(JokeDetail.class);
+                        JokeSingle jokeDetail = joke.getValue(JokeSingle.class);
                         jokeDetailsList.add(jokeDetail);
-                        mSwipView.addView(new TinderCard2(jokeDetail.getJokeContent()));
+                        mSwipView.addView(new TinderCard2(jokeDetail.jokeContent));
 
                     }
                     jokeDetailsList.size();

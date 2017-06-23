@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.regrex.dailyJokes.model.CategorySingle;
 import com.regrex.dailyJokes.model.JokeCategory;
 
 import java.util.List;
@@ -60,7 +61,7 @@ public class RecyclerViewBinding<T> extends RecyclerView.Adapter<RecyclerViewBin
                 public void onClick(View v) {
                     T item = list.get(getAdapterPosition());
 
-                    onClick.myOnClick(((JokeCategory)item).getId());
+                    onClick.myOnClick(((CategorySingle)item).categoryId);
 
                 }
             });

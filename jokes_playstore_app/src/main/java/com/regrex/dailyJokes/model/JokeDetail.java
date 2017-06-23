@@ -16,7 +16,6 @@ public class JokeDetail extends BaseObservable {
 
     private int id, main_id, fav;
     private String jokeContent;
-    private Date date;
     private long updatedOn;
     private String authorName;
     private String authorId;
@@ -58,13 +57,6 @@ public class JokeDetail extends BaseObservable {
         this.jokeContent = jokeContent;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
 
 
     public JokeDetail(int id, int main_id, String jokeContent, int fav) {
@@ -72,7 +64,6 @@ public class JokeDetail extends BaseObservable {
         this.main_id = main_id;
         this.jokeContent = jokeContent;
         this.fav = fav;
-        this.date = new Date();
 
     }
 }
