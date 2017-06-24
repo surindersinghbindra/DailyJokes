@@ -3,14 +3,9 @@ package com.regrex.dailyJokes.binding;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-
-import com.regrex.dailyJokes.model.CategorySingle;
-import com.regrex.dailyJokes.model.JokeCategory;
 
 import java.util.List;
 
@@ -51,6 +46,10 @@ public class RecyclerViewBinding<T> extends RecyclerView.Adapter<RecyclerViewBin
         return list.size();
     }
 
+    public interface OnClick {
+        void myOnClick(Object s);
+    }
+
     class MyViewHolder extends RecyclerView.ViewHolder {
         private final ViewDataBinding binding;
 
@@ -61,7 +60,7 @@ public class RecyclerViewBinding<T> extends RecyclerView.Adapter<RecyclerViewBin
                 public void onClick(View v) {
                     T item = list.get(getAdapterPosition());
 
-                    onClick.myOnClick(((CategorySingle)item).categoryId);
+                    onClick.myOnClick(item);
 
                 }
             });
@@ -71,9 +70,5 @@ public class RecyclerViewBinding<T> extends RecyclerView.Adapter<RecyclerViewBin
         public ViewDataBinding getViewDataBinding() {
             return binding;
         }
-    }
-
-    public interface OnClick {
-        void myOnClick(int s);
     }
 }

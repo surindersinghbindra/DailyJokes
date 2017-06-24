@@ -25,7 +25,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.regrex.dailyJokes.R;
@@ -41,14 +40,10 @@ public class SplashActivity extends BaseActivity implements GoogleApiClient.OnCo
 
 
     public static final String TAG = SplashActivity.class.getSimpleName();
-
+    private static final int RC_SIGN_IN = 9001;
     private ActivitySplashBinding activitySplashBinding;
-
     private Runnable runnable;
     private Handler handler;
-
-    private static final int RC_SIGN_IN = 9001;
-
     // [START declare_auth]
     private FirebaseAuth mAuth;
     // [END declare_auth]
@@ -60,6 +55,12 @@ public class SplashActivity extends BaseActivity implements GoogleApiClient.OnCo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        View decorView = getWindow().getDecorView();
+// Hide the status bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
 
         // [START config_signin]
         // Configure Google Sign In

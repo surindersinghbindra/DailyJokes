@@ -1,35 +1,35 @@
 {
   "project_info": {
-    "project_number": "46185992596",
-    "firebase_url": "https://appupdates-e60ec.firebaseio.com",
-    "project_id": "appupdates-e60ec",
-    "storage_bucket": "appupdates-e60ec.appspot.com"
+    "project_number": "965511822564",
+    "firebase_url": "https://viral-jokes-2017.firebaseio.com",
+    "project_id": "viral-jokes-2017",
+    "storage_bucket": "viral-jokes-2017.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:46185992596:android:d94dce7ec90199fa",
+        "mobilesdk_app_id": "1:965511822564:android:e996db0b66684f08",
         "android_client_info": {
-          "package_name": "com.appupdates"
+          "package_name": "com.regrex.jokesupload"
         }
       },
       "oauth_client": [
         {
-          "client_id": "46185992596-feksl8444gv79hc5mioh1rvbjq13uj2l.apps.googleusercontent.com",
+          "client_id": "965511822564-p45rfltjk5vj0rojgak32t4dj2qoim2a.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.appupdates",
-            "certificate_hash": "a701e1ed86ad796a4b9d9becd3629014ac357e54"
+            "package_name": "com.regrex.jokesupload",
+            "certificate_hash": "5cc3e3f558ab7378b5d546b4657d0582e72dc7fa"
           }
         },
         {
-          "client_id": "46185992596-r4k78gk98o32r8h62idtpvd5vov4i3tc.apps.googleusercontent.com",
+          "client_id": "965511822564-t7fg5767abph71gaj6fldeg2549eeokk.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDFahxCGd6w41T8Uu6k5GkpnMq8dNnBlwc"
+          "current_key": "AIzaSyDJ8-NXQPT2FldpS6yU_Ibh6Xdm_dh2xm8"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "46185992596-r4k78gk98o32r8h62idtpvd5vov4i3tc.apps.googleusercontent.com",
+              "client_id": "965511822564-t7fg5767abph71gaj6fldeg2549eeokk.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -52,14 +52,14 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:46185992596:android:1be16fe2ef508abe",
+        "mobilesdk_app_id": "1:965511822564:android:1be16fe2ef508abe",
         "android_client_info": {
           "package_name": "com.regrex.dailyJokes"
         }
       },
       "oauth_client": [
         {
-          "client_id": "46185992596-hb7h3tpfjmhchm1t51uggur9sl0of1m5.apps.googleusercontent.com",
+          "client_id": "965511822564-7meq2f3k53bejg8fi6isj39b9eqol47q.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.regrex.dailyJokes",
@@ -67,13 +67,13 @@
           }
         },
         {
-          "client_id": "46185992596-r4k78gk98o32r8h62idtpvd5vov4i3tc.apps.googleusercontent.com",
+          "client_id": "965511822564-t7fg5767abph71gaj6fldeg2549eeokk.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDFahxCGd6w41T8Uu6k5GkpnMq8dNnBlwc"
+          "current_key": "AIzaSyDJ8-NXQPT2FldpS6yU_Ibh6Xdm_dh2xm8"
         }
       ],
       "services": {
@@ -84,7 +84,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "46185992596-r4k78gk98o32r8h62idtpvd5vov4i3tc.apps.googleusercontent.com",
+              "client_id": "965511822564-t7fg5767abph71gaj6fldeg2549eeokk.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

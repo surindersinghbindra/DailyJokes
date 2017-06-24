@@ -4,7 +4,6 @@ import android.databinding.BaseObservable;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,6 +22,14 @@ public class JokeDetail extends BaseObservable {
     private Map<String, Boolean> whoLikes = new HashMap<>();
 
     public JokeDetail() {
+    }
+
+    public JokeDetail(int id, int main_id, String jokeContent, int fav) {
+        this.id = id;
+        this.main_id = main_id;
+        this.jokeContent = jokeContent;
+        this.fav = fav;
+
     }
 
     public int getId() {
@@ -55,15 +62,5 @@ public class JokeDetail extends BaseObservable {
 
     public void setJokeContent(String jokeContent) {
         this.jokeContent = jokeContent;
-    }
-
-
-
-    public JokeDetail(int id, int main_id, String jokeContent, int fav) {
-        this.id = id;
-        this.main_id = main_id;
-        this.jokeContent = jokeContent;
-        this.fav = fav;
-
     }
 }

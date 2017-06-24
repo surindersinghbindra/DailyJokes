@@ -15,15 +15,15 @@ android {
         applicationId "com.regrex.dailyJokes"
         minSdkVersion 18
         targetSdkVersion 25
-        versionCode 2
-        versionName "1.1"
+        versionCode 4
+        versionName "1.4"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            debuggable true
+            debuggable false
             signingConfig signingConfigs.config
         }
     }
@@ -46,7 +46,10 @@ dependencies {
     compile 'com.google.firebase:firebase-crash:11.0.1'
     compile 'com.mindorks:butterknifelite:0.0.3'
     compile 'com.android.support:cardview-v7:25.3.1'
+    compile 'com.squareup.picasso:picasso:2.5.2'
     // Firebase Authentication
+
+    compile 'com.sackcentury:shinebutton:0.1.7'
     compile 'com.google.firebase:firebase-auth:11.0.1'
     // Google Sign In SDK (only required for Google Sign In)
     compile 'com.google.android.gms:play-services-auth:11.0.1'

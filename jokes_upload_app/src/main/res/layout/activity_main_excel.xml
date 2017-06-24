@@ -8,26 +8,25 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".excel.ExcelActivity">
+    tools:context="com.regrex.jokesupload.excel.ExcelActivity">
 
 
     <Button
+        android:id="@+id/read_xlsx"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/read_xlsx"
-        android:id="@+id/read_xlsx"
-        android:onClick="onReadClick"
-        />
+        android:onClick="uploadCategories"
+        android:text="@string/read_xlsx" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/write_xlsx"
         android:id="@+id/write_xlsx"
-        android:onClick="onWriteClick"
+        android:onClick="uploadJokes"
         />
 
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"

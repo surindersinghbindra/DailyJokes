@@ -26,6 +26,9 @@ public class JokeCategory extends BaseObservable {
     }
 
 
+    public JokeCategory() {
+    }
+
     public int getFid() {
         return fid;
     }
@@ -33,7 +36,6 @@ public class JokeCategory extends BaseObservable {
     public void setFid(int fid) {
         this.fid = fid;
     }
-
 
     public int getLanguageId() {
         return languageId;
@@ -51,7 +53,6 @@ public class JokeCategory extends BaseObservable {
         this.languageName = languageName;
     }
 
-
     public int getId() {
         return id;
     }
@@ -66,9 +67,5 @@ public class JokeCategory extends BaseObservable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-
-    public JokeCategory() {
     }
 }

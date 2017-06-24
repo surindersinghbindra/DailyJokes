@@ -1,7 +1,5 @@
 package com.regrex.dailyJokes.model;
 
-import android.net.Uri;
-
 import com.google.firebase.database.IgnoreExtraProperties;
 
 // [START blog_user_class]

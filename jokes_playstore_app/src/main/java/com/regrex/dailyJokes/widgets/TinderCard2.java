@@ -1,7 +1,7 @@
+/*
 package com.regrex.dailyJokes.widgets;
 
 import android.util.Log;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mindorks.placeholderview.annotations.Click;
@@ -16,9 +16,11 @@ import com.mindorks.placeholderview.annotations.swipe.SwipeOut;
 import com.mindorks.placeholderview.annotations.swipe.SwipeOutState;
 import com.regrex.dailyJokes.R;
 
+*/
 /**
  * Created by janisharali on 19/08/16.
- */
+ *//*
+
 @NonReusable
 @Layout(R.layout.tinder_card_view)
 public class TinderCard2 {
@@ -37,51 +39,53 @@ public class TinderCard2 {
     private TextView locationNameTxt;
 
     public TinderCard2(String jokeText) {
-        this.jokeText=jokeText;
-    }
-
-    @Click(R.id.profileImageView)
-    private void onClick(){
-        Log.d("DEBUG", "profileImageView");
+        this.jokeText = jokeText;
     }
 
     public TinderCard2(CardCallback callback) {
         this.callback = callback;
     }
 
+    @Click(R.id.profileImageView)
+    private void onClick() {
+        Log.d("DEBUG", "profileImageView");
+    }
+
     @Resolve
-    private void onResolve(){
+    private void onResolve() {
         profileImageView.setText(jokeText);
         nameAgeTxt.setText("Name " + count++);
     }
 
     @SwipeOut
-    private void onSwipedOut(){
+    private void onSwipedOut() {
         callback.onSwipingEnd();
     }
 
     @SwipeCancelState
-    private void onSwipeCancelState(){
+    private void onSwipeCancelState() {
         callback.onSwipingEnd();
     }
 
     @SwipeIn
-    private void onSwipeIn(){
+    private void onSwipeIn() {
         callback.onSwipingEnd();
     }
 
     @SwipeInState
-    private void onSwipeInState(){
+    private void onSwipeInState() {
         callback.onSwiping();
     }
 
     @SwipeOutState
-    private void onSwipeOutState(){
+    private void onSwipeOutState() {
         callback.onSwiping();
     }
 
-    public interface CardCallback{
+    public interface CardCallback {
         void onSwiping();
+
         void onSwipingEnd();
     }
 }
+*/
