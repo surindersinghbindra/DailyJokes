@@ -4,6 +4,7 @@ import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.annotation.Unique;
+import com.raizlabs.android.dbflow.structure.BaseModel;
 import com.regrex.dailyJokes.db.AppDatabase;
 
 
@@ -12,7 +13,7 @@ import com.regrex.dailyJokes.db.AppDatabase;
  */
 
 @Table(database = AppDatabase.class)
-public class JokeSingle {
+public class JokeSingle extends BaseModel {
 
 
     @PrimaryKey
@@ -30,6 +31,17 @@ public class JokeSingle {
     public int dislikes;
     @Column
     public String addedOn;
+
+    public int getAlreadyRead() {
+        return alreadyRead;
+    }
+
+    public void setAlreadyRead(int alreadyRead) {
+        this.alreadyRead = alreadyRead;
+    }
+
+    @Column(defaultValue = "0")
+    public int alreadyRead;
 
     public JokeSingle(int jokeId, int categoryId, String jokeContent, int languageOfJoke, int likes, int dislikes, String addedOn) {
         this.jokeId = jokeId;

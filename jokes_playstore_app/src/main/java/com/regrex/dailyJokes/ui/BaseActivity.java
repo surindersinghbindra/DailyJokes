@@ -6,10 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.regrex.dailyJokes.R;
 
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     @VisibleForTesting
     public ProgressDialog mProgressDialog;
+
+
+    abstract public void loadAds();
+
 
     public void showProgressDialog() {
         if (mProgressDialog == null) {

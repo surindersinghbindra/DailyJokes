@@ -6,4 +6,17 @@
     <string name="sign_in_failed">Sign In Failed</string>
     <string name="loading">Loading</string>
     <string name="action_settings">Refresh Jokes</string>
+
+
+    <string name="admob_app_id_debug">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="admob_app_id_release">ca-app-pub-3631147952904752~7863055422</string>
+
+    <string name="banner_ad_unit_id_debug">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="interstitial_ad_unit_id_debug">ca-app-pub-3940256099942544/1033173712</string>
+
+    <string name="banner_ad_unit_id_banner_categories_release">ca-app-pub-3631147952904752/1816521827</string>
+    <string name="banner_joke_content_release">ca-app-pub-3631147952904752/3293255022</string>
+    <string name="interstitial_joke_content_release">ca-app-pub-3631147952904752/3293255022</string>
+
+
 </resources>

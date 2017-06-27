@@ -1,185 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/appback"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:subtitleTextColor="@color/secondary_text"
+        app:titleTextColor="@color/primary_text" />
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="bottom"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:visibility="visible">
+        android:layout_above="@+id/adView"
+        android:layout_below="@+id/toolbar">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:subtitleTextColor="@color/secondary_text"
-            app:titleTextColor="@color/primary_text" />
-
-
-        <LinearLayout
-            android:id="@+id/ll_Base"
+        <TextView
+            android:id="@+id/tvJokeContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="@color/colorAccent"
-            android:padding="5dp"
-            android:weightSum="5">
+            android:padding="18sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp" />
 
-            <LinearLayout
-                android:id="@+id/ll_Previous"
-                android:layout_width="0dp"
+
+    </ScrollView>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ll_Base"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_joke_content_release" />
+
+    <LinearLayout
+        android:id="@+id/ll_Base"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorAccent"
+        android:padding="5dp"
+        android:weightSum="5">
+
+        <LinearLayout
+            android:id="@+id/ll_Previous"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:background="@drawable/ic_keyboard_arrow_left"
+                android:padding="3dp" />
 
-                <ImageView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_keyboard_arrow_left"
-                    android:padding="3dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Previous"
-                    android:textColor="@color/darkRed" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_Like"
-                android:layout_width="0dp"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-
-                <com.sackcentury.shinebuttonlib.ShineButton
-                    android:id="@+id/sbLike"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_centerInParent="true"
-                    android:elevation="10dp"
-                    app:btn_color="@color/colorPrimary"
-                    app:btn_fill_color="@color/colorPrimary"
-                    app:enable_flashing="true"
-                    app:siShape="@raw/ic_thumb_up" />
-
-                <ImageView
-                    android:id="@+id/ivLike"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_thumb_up"
-                    android:padding="3dp"
-
-                    android:visibility="gone" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Like"
-                    android:textColor="@color/darkRed" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_Share"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/ivShare"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_share"
-                    android:padding="3dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Share"
-                    android:textColor="@color/darkRed" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_disLike"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/ivDislike"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/ic_thumb_down"
-                    android:padding="3dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Dislike"
-                    android:textColor="@color/darkRed" />
-            </LinearLayout>
-
-            <LinearLayout
-
-                android:id="@+id/ll_Next"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/ivNext"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/ic_navigate_next"
-                    android:padding="3dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Next"
-                    android:textColor="@color/darkRed" />
-            </LinearLayout>
+                android:text="Previous"
+                android:textColor="@color/darkRed" />
         </LinearLayout>
 
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@id/ll_Base"
-            android:layout_below="@id/toolbar">
+        <LinearLayout
+            android:id="@+id/ll_Like"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <com.sackcentury.shinebuttonlib.ShineButton
+                android:id="@+id/sbLike"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:elevation="10dp"
+                app:btn_color="@color/colorPrimary"
+                app:btn_fill_color="@color/colorPrimary"
+                app:enable_flashing="true"
+                app:siShape="@raw/ic_thumb_up" />
+
+            <ImageView
+                android:id="@+id/ivLike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_thumb_up"
+                android:padding="3dp"
+
+                android:visibility="gone" />
 
             <TextView
-                android:id="@+id/tvJokeContent"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="15dp"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="18sp" />
-        </ScrollView>
+                android:text="Like"
+                android:textColor="@color/darkRed" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_Share"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/ivShare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_share"
+                android:padding="3dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Share"
+                android:textColor="@color/darkRed" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_disLike"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/ivDislike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/ic_thumb_down"
+                android:padding="3dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dislike"
+                android:textColor="@color/darkRed" />
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:id="@+id/ll_Next"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/ivNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/ic_navigate_next"
+                android:padding="3dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Next"
+                android:textColor="@color/darkRed" />
+        </LinearLayout>
+    </LinearLayout>
 
 
-    </RelativeLayout>
-
-
-</FrameLayout>
+</RelativeLayout>

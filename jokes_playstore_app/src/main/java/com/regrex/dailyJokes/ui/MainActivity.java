@@ -9,7 +9,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -18,7 +17,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,6 +28,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.raizlabs.android.dbflow.config.FlowManager;
+import com.regrex.dailyJokes.AppController;
+import com.regrex.dailyJokes.BuildConfig;
 import com.regrex.dailyJokes.R;
 import com.regrex.dailyJokes.binding.RecyclerViewBinding;
 import com.regrex.dailyJokes.model.CategorySingle;
@@ -37,10 +42,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, RecyclerViewBinding.OnClick {
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, RecyclerViewBinding.OnClick {
     private RecyclerView recyclerView;
     private ImageView tvProfileImage;
     private TextView tvDisplayName, tvEmail;
+    private AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-
+        adView = (AdView) findViewById(R.id.adView);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -87,13 +93,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DatabaseReference myRef = database.getReference("jokes_category");
         myRef.keepSynced(true);
 
-        try {
-            DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
-            dataBaseHelper.opendatabase();
-            SQLiteDatabase db = dataBaseHelper.getReadableDatabase();
+       /* try {
+           // DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
+          //  dataBaseHelper.opendatabase();
+
+           // SQLiteDatabase db = dataBaseHelper.getReadableDatabase();
             //Cursor cursor = db.rawQuery("SELECT * FROM main_joke", null);
             List<JokeCategory> jokeDetailsList = new ArrayList<>();
-        /*    if (cursor.moveToFirst()) {
+        *//*    if (cursor.moveToFirst()) {
                 do {
                     //  JokeCategory testBean = new JokeCategory(cursor.getInt(0), cursor.getString(1));
                     //  myRef.push().setValue(testBean);
@@ -105,10 +112,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             jokeDetailsList.size();
             cursor.close();
-            db.close();*/
+            db.close();*//*
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
         Query query = myRef.orderByChild("categoryId");
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -131,6 +138,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
+
+        loadAds();
     }
 
     @Override
@@ -180,8 +189,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
+            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+            sharingIntent.setType("text/plain");
+            //   String shareBody = jokeSinglesList.get(jokeMumber).getJokeContent() + "\n Hey! I found an amazing app for Jokes.Download here\n" + "http://market.android.com/details?id=" + ReadJokeActivity.this.getPackageName();
+            String shareBody = "Hey! I found an amazing app for Jokes.\nDownload here\n" + "https://play.google.com/store/apps/details?id=" + this.getPackageName();
+
+            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.app_name));
+            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+            startActivity(Intent.createChooser(sharingIntent, "Share via"));
+
 
         } else if (id == R.id.nav_send) {
+
+            Intent i = new Intent(Intent.ACTION_SEND);
+            i.setType("message/rfc822");
+            i.putExtra(Intent.EXTRA_EMAIL, new String[]{"regrexapps@gmail.com"});
+            i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name) + " feedback from " + FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+            // i.putExtra(Intent.EXTRA_TEXT, "body of email");
+            try {
+                startActivity(Intent.createChooser(i, "Send mail..."));
+            } catch (android.content.ActivityNotFoundException ex) {
+                Toast.makeText(this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+            }
 
         }
 
@@ -198,5 +227,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent);
         }
 
+    }
+
+    @Override
+    public void loadAds() {
+        //adView.setAdSize(AdSize.BANNER);
+
+        AdRequest adRequest = AppController.commonAdRequest();
+
+        if (BuildConfig.DEBUG) {
+            //adView.setAdUnitId(getString(R.string.banner_ad_unit_id_debug));
+
+        } else {
+
+            // adView.setAdUnitId(getString(R.string.banner_joke_content_release));
+        }
+
+        adView.loadAd(adRequest);
     }
 }

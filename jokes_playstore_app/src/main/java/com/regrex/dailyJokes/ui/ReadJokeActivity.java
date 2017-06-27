@@ -3,13 +3,17 @@ package com.regrex.dailyJokes.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.animation.OvershootInterpolator;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,22 +25,28 @@ import com.mindorks.butterknifelite.annotations.BindView;
 import com.mindorks.butterknifelite.annotations.OnClick;
 import com.raizlabs.android.dbflow.config.FlowManager;
 import com.raizlabs.android.dbflow.sql.language.CursorResult;
+import com.raizlabs.android.dbflow.sql.language.OperatorGroup;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
+import com.raizlabs.android.dbflow.structure.database.DatabaseWrapper;
+import com.raizlabs.android.dbflow.structure.database.transaction.ITransaction;
 import com.raizlabs.android.dbflow.structure.database.transaction.QueryTransaction;
+import com.regrex.dailyJokes.AppController;
+import com.regrex.dailyJokes.BuildConfig;
 import com.regrex.dailyJokes.R;
 import com.regrex.dailyJokes.binding.RecyclerViewBinding;
+import com.regrex.dailyJokes.db.AppDatabase;
 import com.regrex.dailyJokes.model.CategorySingle;
 import com.regrex.dailyJokes.model.JokeSingle;
 import com.regrex.dailyJokes.model.JokeSingle_Table;
-import com.regrex.dailyJokes.utils.DataBaseHelper;
 import com.sackcentury.shinebuttonlib.ShineButton;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReadJokeActivity extends AppCompatActivity implements RecyclerViewBinding.OnClick {
+public class ReadJokeActivity extends BaseActivity implements RecyclerViewBinding.OnClick {
 
+
+    private InterstitialAd interstitial;
     private static final String TAG = "ActivityTinder";
     private RecyclerView recyclerView;
     private List<JokeSingle> jokeSinglesList = new ArrayList<>();
@@ -44,6 +54,9 @@ public class ReadJokeActivity extends AppCompatActivity implements RecyclerViewB
     private TextView tvJokeContent;
     private int jokeMumber = 0;
 
+
+    @BindView(R.id.adView)
+    private AdView adView;
     @BindView(R.id.ll_Previous)
     private LinearLayout ll_Previous;
 
@@ -83,25 +96,34 @@ public class ReadJokeActivity extends AppCompatActivity implements RecyclerViewB
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));*/
 
-        try {
+        loadAds();
+       /* try {
             DataBaseHelper dataBaseHelper = new DataBaseHelper(this);
             dataBaseHelper.getReadableDatabase();
 
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
 
         FlowManager.getDatabaseForTable(JokeSingle.class)
                 .beginTransactionAsync(new QueryTransaction.Builder<>(
                         SQLite.select()
                                 .from(JokeSingle.class)
-                                .where(JokeSingle_Table.categoryId.eq(categorySingle.categoryId)).and(JokeSingle_Table.likes.eq(0)))
+                                .where(JokeSingle_Table.categoryId.eq(categorySingle.categoryId)).and(JokeSingle_Table.likes.eq(0)).and(OperatorGroup.clause().or(JokeSingle_Table.alreadyRead.isNull())).or(JokeSingle_Table.alreadyRead.eq(0)))
                         .queryResult(new QueryTransaction.QueryResultCallback<JokeSingle>() {
                             @Override
                             public void onQueryResult(QueryTransaction<JokeSingle> transaction, @NonNull CursorResult<JokeSingle> tResult) {
+                                try {
+                                    if (tResult.getCount() > 0) {
+                                        tvJokeContent.setText(tResult.getItem(0).getJokeContent());
+                                        jokeSinglesList.addAll(tResult.toList());
+                                    }
+                                } catch (Exception e) {
 
-                                tvJokeContent.setText(tResult.getItem(0).getJokeContent());
-                                jokeSinglesList.addAll(tResult.toList());
+                                } finally {
+                                    tResult.close();
+                                }
+
 
                             }
                         }).build())
@@ -164,7 +186,7 @@ public class ReadJokeActivity extends AppCompatActivity implements RecyclerViewB
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
         //   String shareBody = jokeSinglesList.get(jokeMumber).getJokeContent() + "\n Hey! I found an amazing app for Jokes.Download here\n" + "http://market.android.com/details?id=" + ReadJokeActivity.this.getPackageName();
-        String shareBody = jokeSinglesList.get(jokeMumber).getJokeContent() + "\n Hey! I found an amazing app for Jokes.Download here\n" + "https://play.google.com/store/apps/details?id=" + ReadJokeActivity.this.getPackageName();
+        String shareBody = jokeSinglesList.get(jokeMumber).getJokeContent() + "\n Hey! I found an amazing app for Jokes.\nDownload here\n" + "https://play.google.com/store/apps/details?id=" + ReadJokeActivity.this.getPackageName();
 
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Pharmacognize");
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
@@ -176,6 +198,9 @@ public class ReadJokeActivity extends AppCompatActivity implements RecyclerViewB
     public void onClickNext() {
         sbLike.setChecked(false);
         if (jokeMumber < jokeSinglesList.size()) {
+            JokeSingle jokeSingle = jokeSinglesList.get(jokeMumber);
+            jokeSingle.setAlreadyRead(1);
+            FlowManager.getModelAdapter(JokeSingle.class).save(jokeSingle);
             jokeMumber++;
             animateOverShoot(ll_Next);
             tvJokeContent.setText(jokeSinglesList.get(jokeMumber).getJokeContent());
@@ -197,9 +222,27 @@ public class ReadJokeActivity extends AppCompatActivity implements RecyclerViewB
 
     }
 
+    @OnClick(R.id.sbLike)
+    public void onClickSbLike() {
+        FlowManager.getDatabase(AppDatabase.class).executeTransaction(new ITransaction() {
+            @Override
+            public void execute(DatabaseWrapper databaseWrapper) {
+                // something here
+
+                //   FlowManager.getModelAdapter(JokeSingle.class).save(model);
+
+                JokeSingle jokeSingle = jokeSinglesList.get(jokeMumber);
+                jokeSingle.setLikes(1);
+                jokeSingle.setAlreadyRead(1);
+
+                jokeSingle.save(databaseWrapper); // use wrapper (from BaseModel)
+            }
+        });
+    }
+
     @OnClick(R.id.ll_Like)
     public void onClickLike() {
-        animateOverShoot(ll_Like);
+        //animateOverShoot(ll_Like);
 
     }
 
@@ -227,8 +270,74 @@ public class ReadJokeActivity extends AppCompatActivity implements RecyclerViewB
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (interstitial != null && interstitial.isLoaded()) {
+            interstitial.show();
+        }
+        // finish();
+    }
+
+    @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    @Override
+    public void loadAds() {
+
+        //adView.setAdSize(AdSize.BANNER);
+
+        AdRequest adRequest = AppController.commonAdRequest();
+        interstitial = new InterstitialAd(this);
+        if (BuildConfig.DEBUG) {
+            Log.e("DEBUG", "interstitial_DEBUG");
+            //adView.setAdUnitId(getString(R.string.banner_ad_unit_id_debug));
+            interstitial.setAdUnitId(getString(R.string.interstitial_ad_unit_id_debug));
+        } else {
+            interstitial.setAdUnitId(getString(R.string.interstitial_joke_content_release));
+            // adView.setAdUnitId(getString(R.string.banner_joke_content_release));
+            Log.e("DEBUG", "interstitial_RElease");
+        }
+        interstitial.loadAd(adRequest);
+        adView.loadAd(adRequest);
+        interstitial.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+            }
+
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+                Log.e("LISTNER", i + "");
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                super.onAdLeftApplication();
+            }
+
+            @Override
+            public void onAdOpened() {
+                super.onAdOpened();
+            }
+
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+            }
+
+            @Override
+            public void onAdClicked() {
+                super.onAdClicked();
+            }
+
+            @Override
+            public void onAdImpression() {
+                super.onAdImpression();
+            }
+        });
     }
 }

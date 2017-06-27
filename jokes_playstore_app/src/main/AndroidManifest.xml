@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.regrex.dailyJokes">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:name=".AppController"
         android:allowBackup="true"
@@ -22,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.ReadJokeActivity" />
-        <activity android:name=".ui.MainActivity"></activity>
+        <activity android:name=".ui.MainActivity"/>
     </application>
 
 </manifest>

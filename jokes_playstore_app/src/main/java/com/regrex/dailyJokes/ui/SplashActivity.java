@@ -157,7 +157,7 @@ public class SplashActivity extends BaseActivity implements GoogleApiClient.OnCo
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            AppConstants.getUserRefrence().child(user.getUid()).setValue(new User(user.getDisplayName(), user.getEmail(), 0L));
+                            AppConstants.getUserRefrence().child(user.getUid()).setValue(new User(user.getDisplayName(), user.getEmail(), System.currentTimeMillis() + ""));
                             callMainActivity();
                         } else {
                             // If sign in fails, display a message to the user.
@@ -232,6 +232,11 @@ public class SplashActivity extends BaseActivity implements GoogleApiClient.OnCo
         // be available.
         Log.d(TAG, "onConnectionFailed:" + connectionResult);
         Toast.makeText(this, "Google Play Services error.", Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void loadAds() {
 
     }
 }
