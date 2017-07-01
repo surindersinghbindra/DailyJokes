@@ -3,12 +3,17 @@ package com.regrex.dailyJokes.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.animation.OvershootInterpolator;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextSwitcher;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -38,6 +43,8 @@ import com.regrex.dailyJokes.db.AppDatabase;
 import com.regrex.dailyJokes.model.CategorySingle;
 import com.regrex.dailyJokes.model.JokeSingle;
 import com.regrex.dailyJokes.model.JokeSingle_Table;
+import com.regrex.dailyJokes.utils.OnSwipeTouchListener;
+import com.regrex.dailyJokes.widgets.AppTextView;
 import com.sackcentury.shinebuttonlib.ShineButton;
 
 import java.util.ArrayList;
@@ -51,7 +58,7 @@ public class ReadJokeActivity extends BaseActivity implements RecyclerViewBindin
     private RecyclerView recyclerView;
     private List<JokeSingle> jokeSinglesList = new ArrayList<>();
     @BindView(R.id.tvJokeContent)
-    private TextView tvJokeContent;
+    private TextSwitcher tvJokeContent;
     private int jokeMumber = 0;
 
 
@@ -70,6 +77,9 @@ public class ReadJokeActivity extends BaseActivity implements RecyclerViewBindin
     private LinearLayout ll_disLike;
     @BindView(R.id.ll_Like)
     private LinearLayout ll_Like;
+
+    @BindView(R.id.scrollView)
+    private ScrollView scrollView;
 
 
     @BindView(R.id.toolbar)
@@ -104,6 +114,40 @@ public class ReadJokeActivity extends BaseActivity implements RecyclerViewBindin
         } catch (IOException e) {
             e.printStackTrace();
         }*/
+        TextView textView = new TextView(this);
+        textView.setTextColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
+        textView.setTextSize(20f);
+
+
+        TextView textView1 = new TextView(this);
+        textView1.setTextColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
+        textView1.setTextSize(20f);
+
+        tvJokeContent.addView(new AppTextView(this));
+        tvJokeContent.addView(new AppTextView(this));
+        tvJokeContent.setInAnimation(this, R.anim.fadein);
+        tvJokeContent.setOutAnimation(this, R.anim.fadeout);
+        scrollView.setSmoothScrollingEnabled(false);
+        scrollView.setOnTouchListener(new OnSwipeTouchListener(ReadJokeActivity.this) {
+            public void onSwipeTop() {
+               // Toast.makeText(ReadJokeActivity.this, "top", Toast.LENGTH_SHORT).show();
+            }
+
+            public void onSwipeRight() {
+              //  Toast.makeText(ReadJokeActivity.this, "right", Toast.LENGTH_SHORT).show();
+                onClickPrevious();
+            }
+
+            public void onSwipeLeft() {
+              //  Toast.makeText(ReadJokeActivity.this, "left", Toast.LENGTH_SHORT).show();
+                onClickNext();
+            }
+
+            public void onSwipeBottom() {
+              //  Toast.makeText(ReadJokeActivity.this, "bottom", Toast.LENGTH_SHORT).show();
+            }
+
+        });
 
         FlowManager.getDatabaseForTable(JokeSingle.class)
                 .beginTransactionAsync(new QueryTransaction.Builder<>(
@@ -198,6 +242,7 @@ public class ReadJokeActivity extends BaseActivity implements RecyclerViewBindin
     public void onClickNext() {
         sbLike.setChecked(false);
         if (jokeMumber < jokeSinglesList.size()) {
+            scrollView.smoothScrollTo(0,0);
             JokeSingle jokeSingle = jokeSinglesList.get(jokeMumber);
             jokeSingle.setAlreadyRead(1);
             FlowManager.getModelAdapter(JokeSingle.class).save(jokeSingle);
@@ -214,6 +259,7 @@ public class ReadJokeActivity extends BaseActivity implements RecyclerViewBindin
         sbLike.setChecked(false);
         if (jokeMumber > 0) {
             jokeMumber--;
+            scrollView.smoothScrollTo(0,0);
             animateOverShoot(ll_Previous);
             tvJokeContent.setText(jokeSinglesList.get(jokeMumber).getJokeContent());
         } else {

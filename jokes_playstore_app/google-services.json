@@ -1,35 +1,27 @@
 {
   "project_info": {
-    "project_number": "965511822564",
-    "firebase_url": "https://viral-jokes-2017.firebaseio.com",
-    "project_id": "viral-jokes-2017",
-    "storage_bucket": "viral-jokes-2017.appspot.com"
+    "project_number": "585121419316",
+    "firebase_url": "https://viral-jokes-project.firebaseio.com",
+    "project_id": "viral-jokes-project",
+    "storage_bucket": "viral-jokes-project.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:965511822564:android:e996db0b66684f08",
+        "mobilesdk_app_id": "1:585121419316:android:1be16fe2ef508abe",
         "android_client_info": {
-          "package_name": "com.regrex.jokesupload"
+          "package_name": "com.regrex.dailyJokes"
         }
       },
       "oauth_client": [
         {
-          "client_id": "965511822564-p45rfltjk5vj0rojgak32t4dj2qoim2a.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.regrex.jokesupload",
-            "certificate_hash": "5cc3e3f558ab7378b5d546b4657d0582e72dc7fa"
-          }
-        },
-        {
-          "client_id": "965511822564-t7fg5767abph71gaj6fldeg2549eeokk.apps.googleusercontent.com",
+          "client_id": "585121419316-h8bpq9i79ptlct6osqij5k1288uo7b0j.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDJ8-NXQPT2FldpS6yU_Ibh6Xdm_dh2xm8"
+          "current_key": "AIzaSyBmbBggM5t5laD3SFKsji3MIkRBchOUeio"
         }
       ],
       "services": {
@@ -37,13 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "965511822564-t7fg5767abph71gaj6fldeg2549eeokk.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2
@@ -52,28 +39,20 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:965511822564:android:1be16fe2ef508abe",
+        "mobilesdk_app_id": "1:585121419316:android:e996db0b66684f08",
         "android_client_info": {
-          "package_name": "com.regrex.dailyJokes"
+          "package_name": "com.regrex.jokesupload"
         }
       },
       "oauth_client": [
         {
-          "client_id": "965511822564-7meq2f3k53bejg8fi6isj39b9eqol47q.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.regrex.dailyJokes",
-            "certificate_hash": "5cc3e3f558ab7378b5d546b4657d0582e72dc7fa"
-          }
-        },
-        {
-          "client_id": "965511822564-t7fg5767abph71gaj6fldeg2549eeokk.apps.googleusercontent.com",
+          "client_id": "585121419316-h8bpq9i79ptlct6osqij5k1288uo7b0j.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDJ8-NXQPT2FldpS6yU_Ibh6Xdm_dh2xm8"
+          "current_key": "AIzaSyBmbBggM5t5laD3SFKsji3MIkRBchOUeio"
         }
       ],
       "services": {
@@ -81,13 +60,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "965511822564-t7fg5767abph71gaj6fldeg2549eeokk.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

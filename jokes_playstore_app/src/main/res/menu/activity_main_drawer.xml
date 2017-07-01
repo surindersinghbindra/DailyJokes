@@ -5,6 +5,7 @@
 
         android:checkableBehavior="single"
         android:visible="false">
+
         <item
 
             android:id="@+id/nav_camera"

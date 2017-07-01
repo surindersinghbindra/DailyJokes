@@ -46,6 +46,15 @@ public class AppController extends Application {
         // moto g4 plus
         if (BuildConfig.DEBUG) {
             Log.e("DEBUG2", "BUILD_CONFIG");
+
+            // 19 API
+            // 41D20A27D81DEE80A9F2C26610668F6E
+
+            // moto g2
+            //  41D20A27D81DEE80A9F2C26610668F6E
+
+            // g4
+           // 1BB904CE893D57AAED6722FC04214CD8
             return new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("41D20A27D81DEE80A9F2C26610668F6E").build();
 
         } else {
