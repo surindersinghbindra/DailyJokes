@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/appback"
+    android:background="#4E342E"
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
@@ -19,6 +19,7 @@
 
 
     <ScrollView
+        android:scrollbars="none"
         android:overScrollMode="never"
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
@@ -52,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorAccent"
+        android:background="#4E342E"
         android:padding="5dp"
         android:weightSum="5">
 
@@ -90,8 +91,8 @@
 
             <com.sackcentury.shinebuttonlib.ShineButton
                 android:id="@+id/sbLike"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_centerInParent="true"
                 android:elevation="10dp"
                 app:btn_color="@color/colorPrimary"

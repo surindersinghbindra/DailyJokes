@@ -8,6 +8,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
@@ -31,6 +33,15 @@ import com.regrex.dailyJokes.R;
 import com.regrex.dailyJokes.databinding.ActivitySplashBinding;
 import com.regrex.dailyJokes.model.User;
 
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
+import tyrantgit.explosionfield.ExplosionField;
+
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -40,6 +51,7 @@ public class SplashActivity extends BaseActivity implements GoogleApiClient.OnCo
 
 
     public static final String TAG = SplashActivity.class.getSimpleName();
+    private final CompositeDisposable disposables = new CompositeDisposable();
     private static final int RC_SIGN_IN = 9001;
     private ActivitySplashBinding activitySplashBinding;
     private Runnable runnable;
@@ -51,16 +63,23 @@ public class SplashActivity extends BaseActivity implements GoogleApiClient.OnCo
     private DatabaseReference mDatabase;
 
     private GoogleApiClient mGoogleApiClient;
+    private ExplosionField mExplosionField;
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        disposables.clear(); // clearing it : do not emit after destroy
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
-        View decorView = getWindow().getDecorView();
+/*        View decorView = getWindow().getDecorView();
 // Hide the status bar.
         int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-        decorView.setSystemUiVisibility(uiOptions);
+        decorView.setSystemUiVisibility(uiOptions);*/
 
         // [START config_signin]
         // Configure Google Sign In
@@ -82,7 +101,7 @@ public class SplashActivity extends BaseActivity implements GoogleApiClient.OnCo
 
 
         activitySplashBinding = DataBindingUtil.setContentView(this, R.layout.activity_splash);
-
+        mExplosionField = ExplosionField.attach2Window(this);
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             activitySplashBinding.btnSignIn.setVisibility(View.VISIBLE);
         } else {
@@ -98,9 +117,17 @@ public class SplashActivity extends BaseActivity implements GoogleApiClient.OnCo
             };
 
             handler = new Handler();
-            handler.postDelayed(runnable, 2000);
+            handler.postDelayed(runnable, 4500);
 
         }
+
+        disposables.add(getObservable()
+                // Run on a background thread
+                .subscribeOn(Schedulers.io())
+                // Be notified on the main thread
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(getObserver()));
+
 
         activitySplashBinding.btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,9 +139,117 @@ public class SplashActivity extends BaseActivity implements GoogleApiClient.OnCo
 
     }
 
+    private Observable<? extends Long> getObservable() {
+        return Observable.interval(0, 220, TimeUnit.MILLISECONDS);
+    }
+
+    private DisposableObserver<Long> getObserver() {
+        return new DisposableObserver<Long>() {
+
+            @Override
+            public void onNext(Long value) {
+                int temp = Integer.valueOf(value + "");
+                switch (temp) {
+                    case 1:
+                        animatemy(activitySplashBinding.smiley3);
+                        break;
+                    case 2:
+                        animatemy(activitySplashBinding.smiley11);
+                        break;
+                    case 3:
+                        animatemy(activitySplashBinding.smiley8);
+                        break;
+                    case 4:
+                        animatemy(activitySplashBinding.smiley10);
+                        break;
+                    case 5:
+                        animatemy(activitySplashBinding.smiley5);
+                        break;
+                    case 6:
+                        animatemy(activitySplashBinding.smiley13);
+                        break;
+                    case 7:
+                        animatemy(activitySplashBinding.smiley4);
+                        break;
+                    case 8:
+                        animatemy(activitySplashBinding.smiley9);
+                        break;
+                    case 9:
+                        animatemy(activitySplashBinding.smiley1);
+                        break;
+                    case 10:
+                        animatemy(activitySplashBinding.smiley7);
+                        break;
+                    case 11:
+                        animatemy(activitySplashBinding.smiley2);
+                        break;
+                    case 12:
+                        animatemy(activitySplashBinding.smiley12);
+                        break;
+                    case 13:
+                        animatemy(activitySplashBinding.smiley6);
+                        break;
+                    case 14:
+                        mExplosionField.explode(activitySplashBinding.appLogo);
+                        break;
+
+                    default:
+                        // animatemy(activitySplashBinding.smiley7);
+                        break;
+
+                }
+
+                Log.d(TAG, " onNext : value : " + value);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+                Log.d(TAG, " onError : " + e.getMessage());
+            }
+
+            @Override
+            public void onComplete() {
+                Log.d(TAG, " onComplete");
+            }
+        };
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
+
+
+    class MyBounceInterpolator implements android.view.animation.Interpolator {
+        private double mAmplitude = 5;
+        private double mFrequency = 10;
+
+        MyBounceInterpolator(double amplitude, double frequency) {
+            mAmplitude = amplitude;
+            mFrequency = frequency;
+        }
+
+        public float getInterpolation(float time) {
+            return (float) (-1 * Math.pow(Math.E, -time / mAmplitude) *
+                    Math.cos(mFrequency * time) + 1);
+        }
+    }
+
+    private void animatemy(View view) {
+        MyBounceInterpolator interpolator = new MyBounceInterpolator(0.25, 40);
+        Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
+        myAnim.setInterpolator(interpolator);
+        view.startAnimation(myAnim);
+    }
+
     private void callMainActivity() {
         startActivity(new Intent(SplashActivity.this, MainActivity.class));
+
         finish();
+        overridePendingTransition(R.anim.zoom_exit,0);
+
     }
 
     // [START onactivityresult]

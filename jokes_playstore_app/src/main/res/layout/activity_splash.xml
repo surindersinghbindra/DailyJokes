@@ -7,21 +7,477 @@
         android:id="@+id/layoutMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#0099cc"
+        android:background="#B2FF59"
         tools:context=".ui.SplashActivity">
 
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <RelativeLayout
 
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimaryDark"
+            android:layout_height="match_parent">
 
-            >
+            <LinearLayout
+                android:id="@+id/topJokers1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:alpha=".75">
+
+
+                <ImageView
+                    android:id="@+id/smiley1"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:rotation="-20"
+                    android:src="@drawable/smile1" />
+
+                <ImageView
+                    android:id="@+id/smiley2"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:src="@drawable/y96" />
+
+                <ImageView
+                    android:id="@+id/smiley3"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:rotation="20"
+                    android:src="@drawable/smile1" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/topJokers1"
+                android:alpha=".25">
+
+
+                <ImageView
+
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:rotation="-20"
+                    android:src="@drawable/smile1"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/smiley4"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:rotation="-20"
+                    android:src="@drawable/smile1" />
+
+                <ImageView
+                    android:id="@+id/smiley5"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:src="@drawable/y96" />
+
+                <ImageView
+                    android:id="@+id/smiley13"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:rotation="20"
+                    android:src="@drawable/smile1" />
+
+                <ImageView
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:rotation="-20"
+                    android:src="@drawable/smile1"
+                    android:visibility="invisible" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/joker3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/topJokers1"
+                android:alpha=".50">
+
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:rotation="-20"
+                    android:src="@drawable/smile1"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:rotation="-20"
+                    android:src="@drawable/smile1" />
+
+                <ImageView
+                    android:id="@+id/smiley12"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:src="@drawable/y96" />
+
+                <ImageView
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:rotation="20"
+                    android:src="@drawable/smile1" />
+
+                <ImageView
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:rotation="-20"
+                    android:src="@drawable/smile1"
+                    android:visibility="invisible" />
+
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/jokersBottom2"
+                android:alpha=".125">
+
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:rotation="-20"
+                    android:src="@drawable/smile1"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:rotation="-20"
+                    android:src="@drawable/smile1"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:rotation="-20"
+                    android:src="@drawable/smile1" />
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:src="@drawable/y96" />
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:rotation="20"
+                    android:src="@drawable/smile1" />
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:rotation="-20"
+                    android:src="@drawable/smile1"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:rotation="-20"
+                    android:src="@drawable/smile1"
+                    android:visibility="invisible" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/jokersBottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:alpha=".75">
+
+
+                <ImageView
+                    android:id="@+id/smiley8"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:rotation="20"
+                    android:src="@drawable/smile1" />
+
+                <ImageView
+                    android:id="@+id/smiley9"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:src="@drawable/y96" />
+
+                <ImageView
+                    android:id="@+id/smiley10"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:rotation="-20"
+                    android:src="@drawable/smile1" />
+            </LinearLayout>
+
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/joker3"
+                android:alpha=".125">
+
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:rotation="-20"
+                    android:src="@drawable/smile1"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:rotation="-20"
+                    android:src="@drawable/smile1"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:rotation="-20"
+                    android:src="@drawable/smile1" />
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:src="@drawable/y96" />
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:rotation="20"
+                    android:src="@drawable/smile1" />
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:rotation="-20"
+                    android:src="@drawable/smile1"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:rotation="-20"
+                    android:src="@drawable/smile1"
+                    android:visibility="invisible" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/jokersBottom2"
+                android:alpha=".125">
+
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:rotation="-20"
+                    android:src="@drawable/smile1"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:rotation="-20"
+                    android:src="@drawable/smile1"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:rotation="-20"
+                    android:src="@drawable/smile1" />
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:src="@drawable/y96" />
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:rotation="20"
+                    android:src="@drawable/smile1" />
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:rotation="-20"
+                    android:src="@drawable/smile1"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:rotation="-20"
+                    android:src="@drawable/smile1"
+                    android:visibility="invisible" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/jokersBottom2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/jokersBottom"
+                android:alpha=".50">
+
+
+                <ImageView
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:rotation="-20"
+                    android:src="@drawable/smile1"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/smiley11"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:rotation="-20"
+                    android:src="@drawable/smile1" />
+
+                <ImageView
+                    android:id="@+id/smiley6"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:src="@drawable/y96" />
+
+                <ImageView
+                    android:id="@+id/smiley7"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:rotation="20"
+                    android:src="@drawable/smile1" />
+
+                <ImageView
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:rotation="-20"
+                    android:src="@drawable/smile1"
+                    android:visibility="invisible" />
+
+            </LinearLayout>
+
 
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/appLogo"
-                android:layout_width="256dp"
-                android:layout_height="256dp"
+                android:layout_width="192dp"
+                android:layout_height="192dp"
                 android:layout_centerInParent="true"
                 android:background="@drawable/web_hi_res_512" />
 

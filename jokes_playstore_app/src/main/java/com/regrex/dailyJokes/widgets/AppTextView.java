@@ -28,7 +28,8 @@ public class AppTextView extends android.support.v7.widget.AppCompatTextView {
 
     private void initView(Context contextCompat) {
 
-        setTextColor(ContextCompat.getColor(contextCompat, R.color.colorPrimaryDark));
+        setTextColor(ContextCompat.getColor(contextCompat, R.color.colortext));
         setTextSize(20f);
+        setLineSpacing(10f,1.20f);
     }
 }
